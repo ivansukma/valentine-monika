@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Valentine Monika ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #ff4e8a, #ff758c, #ff7eb3);
+    overflow-x: hidden;
+    color: white;
+    text-align: center;
+}
+
+/* Animasi hati */
+.heart {
+    position: fixed;
+    top: -10px;
+    color: rgba(255,255,255,0.8);
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+
+/* Header */
+header {
+    padding: 80px 20px 40px;
+}
+
+header h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 3rem;
+    text-shadow: 0 0 15px rgba(255,255,255,0.9);
+}
+
+header p {
+    font-size: 1.2rem;
+    margin-top: 15px;
+}
+
+/* Galeri */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 40px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+}
+
+/* Message */
+.message {
+    padding: 40px 20px 80px;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: auto;
+}
+
+button {
+    margin-top: 30px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    background: white;
+    color: #ff4e8a;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ffe6f0;
+    transform: scale(1.1);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Happy Valentine Monika ❤️</h1>
+    <p>Untuk perempuan tercantik dan tersayangku ✨</p>
+</header>
+
+<section class="gallery">
+    <img src="foto1.jpeg">
+    <img src="foto2.jpeg">
+    <img src="foto3.jpeg">
+    <img src="foto4.jpeg">
+    <img src="foto5.jpeg">
+    <img src="foto6.jpeg">
+</section>
+
+<section class="message">
+    <p>
+        Monika,  
+        Terima kasih sudah hadir di hidupku dan membuat semuanya terasa lebih berarti.  
+        Senyummu adalah alasan bahagiaku, dan bersamamu setiap hari terasa istimewa.  
+        Aku bersyukur bisa mencintaimu hari ini, besok, dan selamanya. ❤️
+    </p>
+
+    <button onclick="showLove()">
+        Klik kalau kamu juga sayang aku 💕
+    </button>
+</section>
+
+<script>
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+setInterval(createHeart, 300);
+
+function showLove() {
+    alert("Aku sayang kamu lebih dari apapun, Monika ❤️");
+}
+</script>
+
+</body>
+</html>
