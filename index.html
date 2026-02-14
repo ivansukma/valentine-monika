@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Valentine Monika ❤️</title>
+<title>For Monika ❤️</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Pacifico&display=swap" rel="stylesheet">
 
@@ -22,18 +22,43 @@ body {
     text-align: center;
 }
 
-/* Animasi hati */
-.heart {
+/* Envelope Screen */
+#envelopeScreen {
     position: fixed;
-    top: -10px;
-    color: rgba(255,255,255,0.8);
-    animation: fall linear infinite;
+    width: 100%;
+    height: 100%;
+    background: #ff4e8a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
 }
 
-@keyframes fall {
-    to {
-        transform: translateY(110vh);
-    }
+.envelope {
+    font-size: 90px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.envelope:hover {
+    transform: scale(1.2) rotate(5deg);
+}
+
+#openText {
+    margin-top: 20px;
+    font-size: 1.2rem;
+}
+
+/* Main Content */
+#mainContent {
+    display: none;
+    animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
 }
 
 /* Header */
@@ -44,15 +69,10 @@ header {
 header h1 {
     font-family: 'Pacifico', cursive;
     font-size: 3rem;
-    text-shadow: 0 0 15px rgba(255,255,255,0.9);
+    text-shadow: 0 0 20px rgba(255,255,255,0.9);
 }
 
-header p {
-    font-size: 1.2rem;
-    margin-top: 15px;
-}
-
-/* Galeri */
+/* Gallery */
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -64,21 +84,20 @@ header p {
     width: 100%;
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    transition: transform 0.4s, box-shadow 0.4s;
+    transition: 0.4s;
 }
 
 .gallery img:hover {
     transform: scale(1.05);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
 }
 
 /* Message */
 .message {
     padding: 40px 20px 80px;
-    font-size: 1.2rem;
-    line-height: 1.8;
     max-width: 800px;
     margin: auto;
+    font-size: 1.2rem;
+    line-height: 1.8;
 }
 
 button {
@@ -95,17 +114,40 @@ button {
 }
 
 button:hover {
-    background: #ffe6f0;
     transform: scale(1.1);
+    background: #ffe6f0;
+}
+
+/* Falling hearts */
+.heart {
+    position: fixed;
+    top: -10px;
+    color: rgba(255,255,255,0.8);
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
 }
 </style>
 </head>
 
 <body>
 
+<!-- Envelope Screen -->
+<div id="envelopeScreen">
+    <div class="envelope" onclick="openLetter()">💌</div>
+    <div id="openText">Klik amplopnya ya Monika ❤️</div>
+</div>
+
+<!-- Main Content -->
+<div id="mainContent">
+
 <header>
     <h1>Happy Valentine Monika ❤️</h1>
-    <p>Untuk perempuan tercantik dan tersayangku ✨</p>
+    <p>Untuk perempuan yang selalu membuatku jatuh cinta setiap hari ✨</p>
 </header>
 
 <section class="gallery">
@@ -120,17 +162,25 @@ button:hover {
 <section class="message">
     <p>
         Monika,  
-        Terima kasih sudah hadir di hidupku dan membuat semuanya terasa lebih berarti.  
-        Senyummu adalah alasan bahagiaku, dan bersamamu setiap hari terasa istimewa.  
-        Aku bersyukur bisa mencintaimu hari ini, besok, dan selamanya. ❤️
+        Terima kasih sudah menjadi rumah ternyaman untuk hatiku.  
+        Bersamamu, dunia terasa lebih indah dan hidup terasa lebih berarti.  
+        Aku tidak hanya mencintaimu hari ini,  
+        tapi setiap hari yang akan datang ❤️
     </p>
 
-    <button onclick="showLove()">
-        Klik kalau kamu juga sayang aku 💕
-    </button>
+    <button onclick="loveExplosion()">Aku Sayang Kamu 💕</button>
 </section>
 
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
 <script>
+function openLetter() {
+    document.getElementById("envelopeScreen").style.display = "none";
+    document.getElementById("mainContent").style.display = "block";
+}
+
 function createHeart() {
     const heart = document.createElement('div');
     heart.classList.add('heart');
@@ -140,15 +190,16 @@ function createHeart() {
     heart.style.fontSize = (Math.random() * 20 + 10) + "px";
     document.body.appendChild(heart);
 
-    setTimeout(() => {
-        heart.remove();
-    }, 5000);
+    setTimeout(() => heart.remove(), 5000);
 }
-
 setInterval(createHeart, 300);
 
-function showLove() {
-    alert("Aku sayang kamu lebih dari apapun, Monika ❤️");
+function loveExplosion() {
+    confetti({
+        particleCount: 150,
+        spread: 100,
+        origin: { y: 0.6 }
+    });
 }
 </script>
 
